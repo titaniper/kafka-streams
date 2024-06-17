@@ -1,0 +1,45 @@
+# 일반적인 Java 관련 무시 파일들
+*.class
+*.jar
+*.war
+*.ear
+
+# 로그 파일
+*.log
+
+# 빌드 디렉토리
+/build/
+/out/
+/target/
+
+# 의존성 디렉토리
+/.gradle/
+/.gradle/
+/.mvn/
+/node_modules/
+
+# IntelliJ IDEA 관련 파일들
+/.idea/
+/*.iml
+/*.ipr
+/*.iws
+
+# Eclipse 관련 파일들
+/.settings/
+/.project
+/.classpath
+
+# NetBeans 관련 파일들
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+# VS Code 관련 파일들
+/.vscode/
+
+# Kafka Streams 상태 디렉토리 (State Stores)
+# 기본적으로 상태 디렉토리는 "state-dir" 옵션에 설정된 위치에 저장됩니다.
+# 일반적으로는 로컬 개발 환경에서만 필요하며, Git에 포함되지 않아야 합니다.
+# 디폴트 위치는 `/tmp/kafka-streams`이므로, 이를 추가합니다.
