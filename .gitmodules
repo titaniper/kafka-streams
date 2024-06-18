@@ -1,0 +1,3 @@
+[submodule "kafka-streams-examples"]
+	path = kafka-streams-examples
+	url = git@github.com:confluentinc/kafka-streams-examples.git
