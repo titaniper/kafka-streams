@@ -29,6 +29,7 @@ public class DynamicTopicProducer {
 //        KStream<String, String> sourceStream = builder.stream("streams-plaintext-input");
         // 정규식 가능
         KStream<String, String> sourceStream = builder.stream(Pattern.compile("streams\\-.*input"));
+        // account 파티션 지정할 수 있으면, haulla repo에 넣고 그게 아니면
 
         // Kafka Producer 설정
         Properties producerProps = new Properties();
@@ -44,6 +45,8 @@ public class DynamicTopicProducer {
             ProducerRecord<String, String> record = new ProducerRecord<>(targetTopic, key, value);
             producer.send(record);
         });
+
+//        sourceStream.to();
 
         KafkaStreams streams = new KafkaStreams(builder.build(), streamsProps);
         streams.start();
