@@ -58,50 +58,11 @@ const run = async () => {
     // acks: []; 
     messages: [
       {
-        key: JSON.stringify({
-          schema: {
-            type: "struct",
-            fields: [
-              {
-                type: "int64",
-                optional: false,
-                field: "id"
-              }
-            ],
-            optional: false,
-            name: "debezium.ben.ddd_event.Key"
-          },
-          payload: {
-            "id": 1170936
-          }
-        }),
-        value: JSON.stringify({
-          schema: {
-            type: "struct",
-            optional: false,
-            name: "debezium.ben.ddd_event.Envelope",
-            version: 1
-          },
-          payload: {
-            before: null,
-            after: {
-              id: 1,
-              type: "MemberUpdatedEvent",
-              occurredAt: 1718350814000,
-              txId: "4b6d71251d17ed1fe43bb28d33d35720",
-              createdAt: 1718350813923997,
-              updatedAt: 1718350813923997,
-              data: {
-                memberId: "2222222222"
-              },
-              actorId: "2222222222"
-              from: "",
-              to: "",
-            },
-            transaction: null
-          }
-        }), 
-        // key: undefined, 
+        headers: {
+          name: 'test',
+        },
+        key: 'key1',
+        value: 'condition2', 
         // headers: {}, 
         // partition: 0, 
         // timestamp: 0,

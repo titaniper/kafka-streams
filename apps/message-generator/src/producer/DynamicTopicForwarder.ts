@@ -75,32 +75,7 @@ const run = async () => {
             "id": 1170936
           }
         }),
-        value: JSON.stringify({
-          schema: {
-            type: "struct",
-            optional: false,
-            name: "debezium.ben.ddd_event.Envelope",
-            version: 1
-          },
-          payload: {
-            before: null,
-            after: {
-              id: 1,
-              type: "MemberUpdatedEvent",
-              occurredAt: 1718350814000,
-              txId: "4b6d71251d17ed1fe43bb28d33d35720",
-              createdAt: 1718350813923997,
-              updatedAt: 1718350813923997,
-              data: {
-                memberId: "2222222222"
-              },
-              actorId: "2222222222"
-              from: "",
-              to: "",
-            },
-            transaction: null
-          }
-        }), 
+        value: 'condition2', 
         // key: undefined, 
         // headers: {}, 
         // partition: 0, 
