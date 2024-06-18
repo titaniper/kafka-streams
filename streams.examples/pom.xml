@@ -56,7 +56,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <mainClass>myapps.Pipe</mainClass>
+                    <mainClass>myapps.DynamicPartitionTopologyForwarder</mainClass>
                 </configuration>
             </plugin>
         </plugins>

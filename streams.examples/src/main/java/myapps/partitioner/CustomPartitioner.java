@@ -1,14 +1,20 @@
 package myapps.partitioner;
 
+import myapps.transformer.DynamicProcessor;
 import org.apache.kafka.clients.producer.Partitioner;
 import org.apache.kafka.common.Cluster;
 import org.apache.kafka.common.PartitionInfo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Map;
 
 public class CustomPartitioner implements Partitioner {
+    // 로거 생성
+    private static final Logger logger = LoggerFactory.getLogger(CustomPartitioner.class);
+
     public void configure(Map<String, ?> configs) {
     }
 
@@ -16,6 +22,8 @@ public class CustomPartitioner implements Partitioner {
     public int partition(String topic, Object key, byte[] keyBytes, Object value, byte[] valueBytes, Cluster cluster) {
         String keyString = new String(keyBytes, StandardCharsets.UTF_8);
         String valueString = new String(valueBytes, StandardCharsets.UTF_8);
+        logger.info(String.format("\"!!!partition\": %s", keyString));
+
         if (keyString.equals("key1")) {
             return 0;
         } else {

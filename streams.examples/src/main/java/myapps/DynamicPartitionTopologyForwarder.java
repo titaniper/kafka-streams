@@ -8,11 +8,17 @@ import org.apache.kafka.streams.KafkaStreams;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.Topology;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Properties;
+import java.util.concurrent.CountDownLatch;
 
 public class DynamicPartitionTopologyForwarder {
+    private static final Logger logger = LoggerFactory.getLogger(DynamicPartitionTopologyForwarder.class);
     public static void main(String[] args) {
+        logger.info("Start DynamicPartitionTopologyForwarder");
+
         Properties props = new Properties();
         props.put(StreamsConfig.APPLICATION_ID_CONFIG, "dynamic-partition-forwarder-app");
         props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
@@ -32,5 +38,23 @@ public class DynamicPartitionTopologyForwarder {
         KafkaStreams streams = new KafkaStreams(topology, props);
         streams.start();
         Runtime.getRuntime().addShutdownHook(new Thread(streams::close));
+
+
+//        final CountDownLatch latch = new CountDownLatch(1);
+//        Runtime.getRuntime().addShutdownHook(new Thread("streams-shutdown-hook") {
+//            @Override
+//            public void run() {
+//                streams.close();
+//                latch.countDown();
+//            }
+//        });
+//
+//        try {
+//            streams.start();
+//            latch.await();
+//        } catch (Throwable e) {
+//            System.exit(1);
+//        }
+//        System.exit(0);
     }
 }

@@ -27,6 +27,8 @@ import org.apache.kafka.streams.kstream.Materialized;
 import org.apache.kafka.streams.kstream.Produced;
 import org.apache.kafka.streams.kstream.ValueMapper;
 import org.apache.kafka.streams.state.KeyValueStore;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 import java.util.Locale;
@@ -40,8 +42,11 @@ import java.util.concurrent.CountDownLatch;
  * into a topic "streams-wordcount-output" where each record is an updated count of a single word.
  */
 public class WordCount {
+    private static final Logger logger = LoggerFactory.getLogger(WordCount.class);
 
     public static void main(String[] args) throws Exception {
+        logger.info("Start WordCount");
+
         Properties props = new Properties();
         props.put(StreamsConfig.APPLICATION_ID_CONFIG, "streams-wordcount");
         props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");

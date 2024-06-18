@@ -41,6 +41,8 @@ public class FilterDddEvent {
     private static final Logger logger = LoggerFactory.getLogger(FilterDddEvent.class);
 
     public static void main(String[] args) throws Exception {
+        logger.info("Start FilterDddEvent");
+
         Properties props = new Properties();
         props.put(StreamsConfig.APPLICATION_ID_CONFIG, "streams-filterevent");
         props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");

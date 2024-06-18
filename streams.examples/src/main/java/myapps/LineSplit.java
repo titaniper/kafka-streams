@@ -22,6 +22,8 @@ import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.Topology;
 import org.apache.kafka.streams.kstream.ValueMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 import java.util.Properties;
@@ -34,8 +36,11 @@ import java.util.concurrent.CountDownLatch;
  * each record represents a single word.
  */
 public class LineSplit {
+    private static final Logger logger = LoggerFactory.getLogger(LineSplit.class);
 
     public static void main(String[] args) throws Exception {
+        logger.info("Start LineSplit");
+
         Properties props = new Properties();
         props.put(StreamsConfig.APPLICATION_ID_CONFIG, "streams-linesplit");
         props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
