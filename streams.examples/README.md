@@ -1,8 +1,14 @@
 # Docker 이미지 빌드
-docker build -t my-kafka-streams-app .
+```
+# 테스트용이라 별 게 다 있따.
+docker build --build-arg KAFKA_BROKER=localhost:9092 --build-arg KAFKA_TOPIC=mytopic -t myapp .
+```
 
 # Docker 컨테이너 실행
-docker run -d --name my-kafka-streams-app my-kafka-streams-app
+```
+docker container rm myapp
+docker run -d --add-host=localhost:172.30.1.63 --name myapp myapp
+```
 
 
 # mvn
@@ -17,10 +23,15 @@ docker run -d --name my-kafka-streams-app my-kafka-streams-app
 - deploy: 패키지를 원격 저장소에 배포합니다.
 
 ```
-$ mvn clean 
-$ mvn package
-$ mvn compile
+$ mvn clean package exec:java
 $ mvn exec:java -Dexec.mainClass="myapps.DynamicPartitionTopologyForwarder" -Dexec.args="arg1 arg2"
-
 $ mvn exec:java -Dexec.mainClass=myapps.DynamicPartitionTopologyForwarder
+```
+
+# 환경 변수 
+```
+export KAFKA_BROKER="localhost:9092"
+export KAFKA_TOPIC="my_topic"
+
+unset KAFKA_BROKER KAFKA_TOPIC
 ```
