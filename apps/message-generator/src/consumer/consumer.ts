@@ -32,7 +32,7 @@ const consumer = kafka.consumer({
 const run = async () => {
   // Consuming
   await consumer.connect()
-  await consumer.subscribe({ topics: ['streams-plaintext-input',], fromBeginning: false })
+  await consumer.subscribe({ topics: ['streams-plaintext-input', 'destination-topic-2'], fromBeginning: false })
   await consumer.run({
     // autoCommit?: boolean
     // autoCommitInterval?: number | null
