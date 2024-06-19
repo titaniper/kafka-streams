@@ -32,7 +32,7 @@ public class DynamicProcessor extends AbstractProcessor<String, String> {
 
         logger.info(String.format("DynamicProcessor: %s", targetTopic));
         // 메시지를 동적으로 지정된 토픽으로 전달, 토폴로지에 등록된 토픽으로만 전송됨
-        context.forward(key, value, To.child(targetTopic));
+//        context.forward(key, value, To.child(targetTopic));
     }
 
     @Override

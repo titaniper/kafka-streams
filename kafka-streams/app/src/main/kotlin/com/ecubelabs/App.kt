@@ -1,8 +1,8 @@
 package com.ecubelabs
 
-import com.ecubelabs.config.KafkaStreamConfig
-import com.ecubelabs.partitioner.MessagePartitioner
-import com.ecubelabs.transformer.MessageBroker
+import com.ecubelabs.configs.KafkaStreamAppConfig
+import com.ecubelabs.streams.debezium.partitioners.DebeziumPartitioner
+import com.ecubelabs.streams.debezium.processors.DebeziumReproducingMessageProcessor
 import org.apache.kafka.clients.producer.ProducerConfig
 import org.apache.kafka.common.serialization.Serdes
 import org.apache.kafka.streams.KafkaStreams
@@ -20,26 +20,28 @@ fun main() {
     Runtime.getRuntime().addShutdownHook(Thread { streams.close() })
 }
 
-fun initConfig(): KafkaStreamConfig {
-    return KafkaStreamConfig(
+fun initConfig(): KafkaStreamAppConfig {
+    return KafkaStreamAppConfig(
+            System.getenv("APP_NAME"),
             arrayOf<String>(System.getenv("KAFKA_BROKER")),
             System.getenv("KAFKA_SOURCE_TOPICS").split(",".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray(),
             System.getenv("KAFKA_SINK_TOPICS").split(",".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
     )
 }
 
-fun initProperties(config: KafkaStreamConfig): Properties {
+fun initProperties(config: KafkaStreamAppConfig): Properties {
     val props = Properties()
-    props[StreamsConfig.APPLICATION_ID_CONFIG] = "message-broker"
-    props[StreamsConfig.BOOTSTRAP_SERVERS_CONFIG] = config.getBrokers().joinToString(",")
+    props[StreamsConfig.APPLICATION_ID_CONFIG] = config.name
+    props[StreamsConfig.BOOTSTRAP_SERVERS_CONFIG] = config.brokers.joinToString(",")
     props[StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG] = Serdes.String().javaClass.name
     props[StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG] = Serdes.String().javaClass.name
+    props[StreamsConfig.consumerPrefix("auto.offset.reset")] = "latest"
     // TODO: 이것도 동적으로 설정할 수 있지 않을까?
-    props[StreamsConfig.producerPrefix(ProducerConfig.PARTITIONER_CLASS_CONFIG)] = MessagePartitioner::class.java.getName()
-    return props;
+    props[StreamsConfig.producerPrefix(ProducerConfig.PARTITIONER_CLASS_CONFIG)] = DebeziumPartitioner::class.java.getName()
+    return props
 }
 
-fun initTopology(config: KafkaStreamConfig): Topology {
+fun initTopology(config: KafkaStreamAppConfig): Topology {
     val builder = StreamsBuilder()
     val topology = builder.build()
     // NOTE: Source 설정
@@ -48,7 +50,7 @@ fun initTopology(config: KafkaStreamConfig): Topology {
     }
 
     // TODO: 이것도 동적으로 설정할 수 있지 않을까?
-    topology.addProcessor("Process", ProcessorSupplier { MessageBroker() }, "Source")
+    topology.addProcessor("Process", ProcessorSupplier { DebeziumReproducingMessageProcessor() }, "Source")
 
     // NOTE: Sink 설정
     for (sinkTopic in config.getSinkTopics()) {

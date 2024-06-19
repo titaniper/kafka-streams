@@ -28,9 +28,10 @@ public class DynamicPartitionTopologyForwarder {
         Topology topology = builder.build();
 
         // NOTE: Source 설정
-        for (String sourceTopic : config.getSourceTopics()) {
-            topology.addSource("Source", Pattern.compile(sourceTopic));
-        }
+        topology.addSource("Source", Pattern.compile("streams\\-.*input"));
+//        for (String sourceTopic : config.getSourceTopics()) {
+//
+//        }
 
         // TODO: 이것도 동적으로 설정할 수 있지 않을까?
         topology.addProcessor("Process", DynamicProcessor::new, "Source");
@@ -41,8 +42,8 @@ public class DynamicPartitionTopologyForwarder {
         }
 
         Properties props = new Properties();
-        props.put(StreamsConfig.APPLICATION_ID_CONFIG, "message-broker");
-        props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, config.getBrokers());
+        props.put(StreamsConfig.APPLICATION_ID_CONFIG, "message-broker11");
+        props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, String.join(",", config.getBrokers()));
         props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
         props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
 

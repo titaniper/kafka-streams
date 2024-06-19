@@ -32,8 +32,13 @@ dependencies {
     implementation("org.slf4j:slf4j-api:1.7.32")
     implementation("ch.qos.logback:logback-classic:1.2.3")
     implementation("ch.qos.logback:logback-core:1.2.3")
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.12.3")
     implementation(kotlin("stdlib"))
+
+    // 직렬화
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.3")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.13.3")
+    implementation("com.fasterxml.jackson.core:jackson-core:2.13.3")
+    implementation("com.fasterxml.jackson.core:jackson-annotations:2.13.3")
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
