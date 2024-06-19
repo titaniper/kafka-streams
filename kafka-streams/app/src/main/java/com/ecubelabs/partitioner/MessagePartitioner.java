@@ -20,8 +20,6 @@ public class MessagePartitioner implements Partitioner {
     public int partition(String topic, Object key, byte[] keyBytes, Object value, byte[] valueBytes, Cluster cluster) {
         String keyString = new String(keyBytes, StandardCharsets.UTF_8);
         String valueString = new String(valueBytes, StandardCharsets.UTF_8);
-        logger.info(String.format("\"!!!partition\": %s", keyString));
-
         if (keyString.equals("key1")) {
             return 0;
         } else {

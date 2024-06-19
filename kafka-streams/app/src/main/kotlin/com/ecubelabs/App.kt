@@ -13,11 +13,11 @@ import org.apache.kafka.streams.processor.ProcessorSupplier
 import java.util.*
 import java.util.regex.Pattern
 
-class App {
-    val greeting: String
-        get() {
-            return "Hello World!"
-        }
+fun main() {
+    val config = initConfig()
+    val streams = KafkaStreams(initTopology(config), initProperties(config))
+    streams.start()
+    Runtime.getRuntime().addShutdownHook(Thread { streams.close() })
 }
 
 fun initConfig(): KafkaStreamConfig {
@@ -56,13 +56,4 @@ fun initTopology(config: KafkaStreamConfig): Topology {
     }
 
     return topology;
-}
-
-fun main() {
-    val config = initConfig();
-    val streams = KafkaStreams(initTopology(config), initProperties(config))
-
-    streams.start()
-
-    Runtime.getRuntime().addShutdownHook(Thread { streams.close() })
 }
