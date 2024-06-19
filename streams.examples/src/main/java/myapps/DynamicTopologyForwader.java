@@ -6,11 +6,16 @@ import org.apache.kafka.streams.KafkaStreams;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.Topology;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Properties;
 
 public class DynamicTopologyForwader {
+    private static final Logger logger = LoggerFactory.getLogger(DynamicTopologyForwader.class);
     public static void main(String[] args) {
+        logger.info("Start DynamicTopologyForwader");
+
         Properties props = new Properties();
         props.put(StreamsConfig.APPLICATION_ID_CONFIG, "dynamic-forwarder-app");
         props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");

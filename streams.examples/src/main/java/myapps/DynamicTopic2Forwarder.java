@@ -9,13 +9,19 @@ import org.apache.kafka.streams.kstream.Predicate;
 import org.apache.kafka.streams.kstream.Produced;
 import org.apache.kafka.streams.kstream.ValueMapper;
 import org.apache.kafka.streams.StreamsConfig;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
 public class DynamicTopic2Forwarder {
+    private static final Logger logger = LoggerFactory.getLogger(DynamicTopic2Forwarder.class);
+
     public static void main(String[] args) {
+        logger.info("Start DynamicTopic2Forwarder");
+
         Properties props = new Properties();
         props.put(StreamsConfig.APPLICATION_ID_CONFIG, "dynamic-topic-producer");
         props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
@@ -30,7 +36,6 @@ public class DynamicTopic2Forwarder {
         Predicate<String, String> isCondition2 = (key, value) -> value.contains("condition2");
 
         KStream<String, String>[] branches = sourceStream.branch(isCondition1, isCondition2, (key, value) -> true);
-
         branches[0].to("topic1", Produced.with(Serdes.String(), Serdes.String()));
         branches[1].to("topic2", Produced.with(Serdes.String(), Serdes.String()));
         branches[2].to("default-topic", Produced.with(Serdes.String(), Serdes.String()));

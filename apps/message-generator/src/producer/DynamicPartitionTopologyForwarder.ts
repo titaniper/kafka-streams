@@ -62,7 +62,7 @@ const run = async () => {
           name: 'test',
         },
         key: 'key1',
-        value: 'condition2', 
+        value: 'dynamic-partition-forwarder-app-typeB', 
         // headers: {}, 
         // partition: 0, 
         // timestamp: 0,

@@ -4,11 +4,17 @@ import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.*;
 import org.apache.kafka.streams.kstream.KStream;
 import org.apache.kafka.streams.kstream.Produced;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Properties;
 
 public class DynamicTopicForwarder {
+    private static final Logger logger = LoggerFactory.getLogger(DynamicTopicForwarder.class);
+
     public static void main(String[] args) {
+        logger.info("Start DynamicTopicForwarder");
+
         Properties props = new Properties();
         props.put(StreamsConfig.APPLICATION_ID_CONFIG, "dynamic-forwarder-app");
         props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
