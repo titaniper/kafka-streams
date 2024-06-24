@@ -15,7 +15,8 @@ public class DebeziumReproducingMessageProcessor extends AbstractProcessor<Strin
             debeziumValue.payload.after.getMetadata().ifPresent(metadata -> {
                 context.forward(key, value, To.child(metadata.to));
             });
-        } catch (JsonProcessingException e) {}
+            throw new RuntimeException("HI");
+        } catch (Exception e) {}
     }
 
     @Override

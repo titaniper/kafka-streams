@@ -3,6 +3,7 @@ package com.ecubelabs
 import com.ecubelabs.configs.KafkaStreamAppConfig
 import com.ecubelabs.streams.debezium.partitioners.DebeziumPartitioner
 import com.ecubelabs.streams.debezium.processors.DebeziumReproducingMessageProcessor
+import com.ecubelabs.utils.k8s.HealthCheckApp
 import org.apache.kafka.clients.producer.ProducerConfig
 import org.apache.kafka.common.serialization.Serdes
 import org.apache.kafka.streams.KafkaStreams
@@ -14,10 +15,14 @@ import java.util.*
 import java.util.regex.Pattern
 
 fun main() {
-    val config = initConfig()
-    val streams = KafkaStreams(initTopology(config), initProperties(config))
-    streams.start()
-    Runtime.getRuntime().addShutdownHook(Thread { streams.close() })
+    HealthCheckApp.execute {
+        val config = initConfig()
+        val streams = KafkaStreams(initTopology(config), initProperties(config))
+        streams.start()
+        Runtime.getRuntime().addShutdownHook(Thread {
+            streams.close()
+        })
+    }
 }
 
 fun initConfig(): KafkaStreamAppConfig {
