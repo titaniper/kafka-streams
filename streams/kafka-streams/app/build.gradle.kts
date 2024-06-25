@@ -34,8 +34,9 @@ dependencies {
 
     // NOTE: 로그
     implementation("org.slf4j:slf4j-api:1.7.32")
-    implementation("ch.qos.logback:logback-classic:1.2.3")
-    implementation("ch.qos.logback:logback-core:1.2.3")
+    implementation("org.apache.logging.log4j:log4j-core:2.20.0")
+    implementation("org.apache.logging.log4j:log4j-api:2.20.0")
+    implementation("org.apache.logging.log4j:log4j-slf4j-impl:2.20.0")
 
     // NOTE: 직렬화
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.3")
