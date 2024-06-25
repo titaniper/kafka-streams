@@ -1,5 +1,5 @@
 # Stage 1: Build the application
-FROM gradle:8.8-jdk17 AS build
+FROM gradle:8.8.0-jdk17-jammy AS build
 
 # Set the working directory
 WORKDIR /app
@@ -18,6 +18,7 @@ RUN chmod +x gradlew
 RUN ./gradlew build
 
 # Stage 2: Create the final image
+# alpine은 no matching manifest for linux/arm64/v8 in the manifest list entries
 FROM eclipse-temurin:17-jdk-jammy
 
 # Set the working directory

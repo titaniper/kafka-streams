@@ -4,3 +4,5 @@ node_modules/
 
 # Ignore Gradle build output directory
 build
+
+.DS_Store
