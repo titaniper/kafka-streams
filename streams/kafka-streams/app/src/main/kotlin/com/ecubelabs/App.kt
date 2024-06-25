@@ -43,6 +43,7 @@ fun initProperties(config: KafkaStreamAppConfig): Properties {
     props[StreamsConfig.consumerPrefix("auto.offset.reset")] = "latest"
     // TODO: 이것도 동적으로 설정할 수 있지 않을까?
     props[StreamsConfig.producerPrefix(ProducerConfig.PARTITIONER_CLASS_CONFIG)] = DebeziumPartitioner::class.java.getName()
+    props[StreamsConfig.PROCESSING_GUARANTEE_CONFIG] = StreamsConfig.EXACTLY_ONCE_V2 // NOTE: EXACTLY_ONCE 설정 (트랜잭션 활성화)
     return props
 }
 
