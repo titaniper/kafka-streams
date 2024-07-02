@@ -22,19 +22,23 @@ repositories {
 dependencies {
     // Use JUnit Jupiter for testing.
     testImplementation(libs.junit.jupiter)
-
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
     // This dependency is used by the application.
     implementation(libs.guava)
-    implementation("org.apache.kafka:kafka-streams:3.5.1")
-    implementation("org.apache.kafka:kafka-clients:3.5.1")
-    implementation("org.slf4j:slf4j-api:1.7.32")
-    implementation("ch.qos.logback:logback-classic:1.2.3")
-    implementation("ch.qos.logback:logback-core:1.2.3")
     implementation(kotlin("stdlib"))
 
-    // 직렬화
+    // NOTE: kafka
+    implementation("org.apache.kafka:kafka-streams:3.5.1")
+    implementation("org.apache.kafka:kafka-clients:3.5.1")
+
+    // NOTE: 로그
+    implementation("org.slf4j:slf4j-api:1.7.32")
+    implementation("org.apache.logging.log4j:log4j-core:2.20.0")
+    implementation("org.apache.logging.log4j:log4j-api:2.20.0")
+    implementation("org.apache.logging.log4j:log4j-slf4j-impl:2.20.0")
+
+    // NOTE: 직렬화
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.3")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.13.3")
     implementation("com.fasterxml.jackson.core:jackson-core:2.13.3")

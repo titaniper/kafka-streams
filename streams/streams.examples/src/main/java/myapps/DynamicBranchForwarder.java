@@ -24,7 +24,7 @@ public class DynamicBranchForwarder {
 
         StreamsBuilder builder = new StreamsBuilder();
         KStream<String, String> sourceStream = builder.stream("streams\\-.*input");
-        KStream<String, String>[] branches = sourceStream.branch(
+        KStream<String, String>[] branches = sourceStream.map().branch(
                 (key, value) -> value.contains("condition1"),
                 (key, value) -> value.contains("condition2"),
                 (key, value) -> true

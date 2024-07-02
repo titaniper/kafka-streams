@@ -25,7 +25,9 @@ public class DebeziumPartitioner implements Partitioner {
             if (metadata != null && metadata.partition != null) {
                 return Math.min(metadata.partition, numPartitions-1);
             }
-        } catch (JsonProcessingException e) {}
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
 
         return partition;
     }

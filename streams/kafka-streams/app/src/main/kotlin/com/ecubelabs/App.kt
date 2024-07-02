@@ -3,6 +3,7 @@ package com.ecubelabs
 import com.ecubelabs.configs.KafkaStreamAppConfig
 import com.ecubelabs.streams.debezium.partitioners.DebeziumPartitioner
 import com.ecubelabs.streams.debezium.processors.DebeziumReproducingMessageProcessor
+import com.ecubelabs.utils.k8s.HealthCheckApp
 import org.apache.kafka.clients.producer.ProducerConfig
 import org.apache.kafka.common.serialization.Serdes
 import org.apache.kafka.streams.KafkaStreams
@@ -14,10 +15,15 @@ import java.util.*
 import java.util.regex.Pattern
 
 fun main() {
-    val config = initConfig()
-    val streams = KafkaStreams(initTopology(config), initProperties(config))
-    streams.start()
-    Runtime.getRuntime().addShutdownHook(Thread { streams.close() })
+
+    HealthCheckApp.execute {
+        val config = initConfig()
+        val streams = KafkaStreams(initTopology(config), initProperties(config))
+        streams.start()
+        Runtime.getRuntime().addShutdownHook(Thread {
+            streams.close()
+        })
+    }
 }
 
 fun initConfig(): KafkaStreamAppConfig {
@@ -38,6 +44,7 @@ fun initProperties(config: KafkaStreamAppConfig): Properties {
     props[StreamsConfig.consumerPrefix("auto.offset.reset")] = "latest"
     // TODO: 이것도 동적으로 설정할 수 있지 않을까?
     props[StreamsConfig.producerPrefix(ProducerConfig.PARTITIONER_CLASS_CONFIG)] = DebeziumPartitioner::class.java.getName()
+//    props[StreamsConfig.PROCESSING_GUARANTEE_CONFIG] = StreamsConfig.EXACTLY_ONCE_V2 // NOTE: EXACTLY_ONCE 설정 (트랜잭션 활성화)
     return props
 }
 
