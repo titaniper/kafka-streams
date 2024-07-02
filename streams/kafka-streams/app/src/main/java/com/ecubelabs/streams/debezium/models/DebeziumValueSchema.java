@@ -5,15 +5,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class DebeziumValueSchema {
-    @JsonProperty("type")
     public String type;
 
-    @JsonProperty("optional")
     public boolean optional;
 
-    @JsonProperty("name")
     public String name;
 
-    @JsonProperty("version")
     public int version;
 }

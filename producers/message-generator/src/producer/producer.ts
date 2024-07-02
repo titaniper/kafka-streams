@@ -94,7 +94,7 @@ const run = async () => {
               data: {
                 memberId: "2222222222"
               },
-              actorId: "2222222222"
+              actorId: "2222222222",
               from: "",
               to: "",
             },
