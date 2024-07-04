@@ -28,13 +28,13 @@ fun main() {
 }
 
 fun initConfig(): KafkaStreamAppConfig {
-//    val configLoader = ConfigLoader();
-//    val topics = configLoader.load()
+    val configLoader = ConfigLoader();
+    val topics = configLoader.load()
     return KafkaStreamAppConfig(
             System.getenv("APP_NAME"),
             arrayOf<String>(System.getenv("KAFKA_BROKER")),
             System.getenv("KAFKA_SOURCE_TOPICS").split(",".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray(),
-            System.getenv("KAFKA_SINK_TOPICS").split(",".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+            topics
     )
 }
 
@@ -53,19 +53,12 @@ fun initProperties(config: KafkaStreamAppConfig): Properties {
 
 fun initTopology(config: KafkaStreamAppConfig): Topology {
     val builder = StreamsBuilder()
-    val topology = builder.build()
-    // NOTE: Source 설정
-    for (sourceTopic in config.getSourceTopics()) {
-        topology.addSource("Source", Pattern.compile(sourceTopic))
-    }
-
-    // TODO: 이것도 동적으로 설정할 수 있지 않을까?
-    topology.addProcessor("Process", ProcessorSupplier { DebeziumReproducingMessageProcessor() }, "Source")
+    val input = builder.stream<String, String>(Pattern.compile("debezium.ben.ddd_event"))
 
     // NOTE: Sink 설정
     for (sinkTopic in config.getSinkTopics()) {
-        topology.addSink<String, String>(sinkTopic, sinkTopic, Serdes.String().serializer(), Serdes.String().serializer(), "Process")
+        input.to(sinkTopic)
     }
 
-    return topology;
+    return builder.build()
 }
