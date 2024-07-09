@@ -44,9 +44,11 @@ dependencies {
     implementation("com.fasterxml.jackson.core:jackson-core:2.13.3")
     implementation("com.fasterxml.jackson.core:jackson-annotations:2.13.3")
 
-    // NOTE: 통신
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    // NOTE: HTTP Client
+    implementation("org.apache.httpcomponents:httpclient:4.5.13")
+//    // NOTE: 통신
+//    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+//    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 }
 
 // Apply a specific Java toolchain to ease working on different environments.

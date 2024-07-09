@@ -8,7 +8,7 @@ const kafka = new Kafka({
 })
 
 const consumer = kafka.consumer({ 
-  groupId: 'test-group',
+  groupId: 'partitioned.haulla-1337022124.domain_event',
   // groupId: string
   // partitionAssigners?: PartitionAssigner[]
   // metadataMaxAge?: number
@@ -32,7 +32,13 @@ const consumer = kafka.consumer({
 const run = async () => {
   // Consuming
   await consumer.connect()
-  await consumer.subscribe({ topics: ['partitioned.ben-1337022124.domain_event'], fromBeginning: false })
+  // test-unsubscribing-topic-group2, test-unsubscribing-topic-group 
+  await consumer.subscribe({ topics: [
+    // 'test_unsubscribing_topic', 
+    'debezium.haulla.ddd_event',
+  ], fromBeginning: false })
+
+
   await consumer.run({
     // autoCommit?: boolean
     // autoCommitInterval?: number | null
@@ -42,7 +48,7 @@ const run = async () => {
     // eachBatch?: EachBatchHandler
     // eachMessage?: EachMessageHandler
     eachBatch: async ({ batch, resolveOffset, heartbeat, isRunning, isStale }) => {
-      console.log('batch!!!!: ', batch, {resolveOffset, heartbeat, isRunning, isStale});
+      
     },
     eachMessage: async ({ topic, partition, message }: { topic: any; partition: any; message: any}) => {
       console.log('hi', {

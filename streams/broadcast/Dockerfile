@@ -17,6 +17,11 @@ COPY app/src app/src
 RUN chmod +x gradlew
 RUN ./gradlew build
 
+ARG COMMIT_HASH
+ARG NODE_ENV
+ENV COMMIT_HASH=$COMMIT_HASH
+ENV NODE_ENV=$NODE_ENV
+
 # Stage 2: Create the final image
 # alpine은 no matching manifest for linux/arm64/v8 in the manifest list entries
 FROM eclipse-temurin:17-jdk-jammy
@@ -26,6 +31,9 @@ WORKDIR /app
 
 # Copy the built jar file from the first stage
 COPY --from=build /app/app/build/libs/*.jar ./app.jar
+
+ENV COMMIT_HASH=$COMMIT_HASH
+ENV NODE_ENV=$NODE_ENV
 
 # Expose the port that your application will run on
 EXPOSE 9092
