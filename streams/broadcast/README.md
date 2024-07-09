@@ -7,7 +7,7 @@
 docker build -t broadcast-app --build-arg NODE_ENV=test --build-arg COMMIT_HASH=ereer . 
 docker run -d --env-file .env --add-host=localhost:172.30.1.63 --name broadcast-app broadcast-app .
 
-docker exec broadcast-app sh -c 'env | grep SECRET_KEY'
+docker exec broadcast-app sh -c 'env | grep NODE_ENV'
 
 ```
 
