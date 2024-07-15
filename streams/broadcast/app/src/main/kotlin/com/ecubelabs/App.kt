@@ -82,7 +82,7 @@ fun initProperties(config: KafkaStreamsConfig): Properties {
 }
 
 fun initTopology(config: KafkaStreamsConfig): Topology {
-    checkTopicsExist(config)
+//    checkTopicsExist(config)
 
     val builder = StreamsBuilder()
     val topology = builder.build()

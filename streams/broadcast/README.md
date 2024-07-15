@@ -4,17 +4,16 @@
 
 # Docker 
 ```
-docker build -t broadcast-app --build-arg NODE_ENV=test --build-arg COMMIT_HASH=ereer . 
-docker run -d --env-file .env --add-host=localhost:172.30.1.63 --name broadcast-app broadcast-app .
-
+docker build -t kafka-streams-broadcast --build-arg NODE_ENV=test --build-arg COMMIT_HASH=ereer . 
+docker run -d --env-file .env --add-host=localhost:172.30.1.63 --name kafka-streams-broadcast kafka-streams-broadcast .
 docker exec broadcast-app sh -c 'env | grep NODE_ENV'
-
 ```
 
 # Deploy
 ```
+docker build -t kafka-streams-broadcast --build-arg NODE_ENV=test --build-arg COMMIT_HASH=ereer .
 docker login  -u devjyk
-docker push devjyk/streams-app
+docker push devjyk/kafka-streams-broadcast
 ```
 
 
