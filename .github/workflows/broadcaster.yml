@@ -30,6 +30,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: streams/broadcast
+          platforms: linux/amd64,linux/arm64
           file: streams/broadcast/Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/kafka-streams-broadcast:latest
