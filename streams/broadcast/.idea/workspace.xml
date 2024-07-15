@@ -66,30 +66,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Gradle.Build broadcast.executor": "Run",
-    "Gradle.Build kafka-streams.executor": "Run",
-    "Kotlin.App.executor": "Run",
-    "Kotlin.AppKt (1).executor": "Debug",
-    "Kotlin.AppKt (2).executor": "Run",
-    "Kotlin.AppKt.executor": "Debug",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/kang/Desktop/workspace/labs/public-stuidy/kafka/kafka-streams/streams/broadcast/app/src/main/kotlin/com/ecubelabs",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.Build broadcast.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.Build kafka-streams.executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.App.executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.AppKt (1).executor&quot;: &quot;Debug&quot;,
+    &quot;Kotlin.AppKt (2).executor&quot;: &quot;Run&quot;,
+    &quot;Kotlin.AppKt.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/kang/Desktop/workspace/labs/public-stuidy/kafka/kafka-streams/streams/broadcast/app/src/main/kotlin/com/ecubelabs&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/src/main/kotlin/com/ecubelabs" />
@@ -140,19 +140,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="kafka-streams" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="kafka-streams" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
       <item itemvalue="Kotlin.AppKt (2)" />
       <item itemvalue="Kotlin.App" />
@@ -188,6 +175,7 @@
       <workItem from="1720062664309" duration="2383000" />
       <workItem from="1720142857658" duration="522000" />
       <workItem from="1720143429360" duration="38000" />
+      <workItem from="1721025403921" duration="299000" />
     </task>
     <servers />
   </component>
@@ -204,12 +192,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/app/src/main/kotlin/com/ecubelabs/App.kt</url>
-          <line>100</line>
+          <line>104</line>
           <option name="timeStamp" value="34" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/app/src/main/kotlin/com/ecubelabs/App.kt</url>
-          <line>118</line>
+          <line>122</line>
           <option name="timeStamp" value="35" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
@@ -219,12 +207,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/app/src/main/kotlin/com/ecubelabs/App.kt</url>
-          <line>76</line>
+          <line>80</line>
           <option name="timeStamp" value="38" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/app/src/main/kotlin/com/ecubelabs/App.kt</url>
-          <line>96</line>
+          <line>100</line>
           <option name="timeStamp" value="39" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="kotlin-line">

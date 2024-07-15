@@ -40,30 +40,34 @@ fun initKafkaStreamsConfig(envConfig: EnvConfig): KafkaStreamsConfig {
 }
 
 // TODO: 별도 파일로 분리?
+//fun fetchClientIds(envConfig: EnvConfig): Array<String> {
+//    val httpClient: CloseableHttpClient = HttpClients.createDefault()
+//    val request = HttpGet("${envConfig.apiHost}/topics?keyword=partitioned.ben")
+//    request.addHeader("Authorization", "Bearer ${envConfig.accessToken}")
+//    request.addHeader("x-city-id", "1")
+//    request.addHeader("x-region-id", "1")
+//    try {
+//        httpClient.execute(request).use { response ->
+//            val statusCode = response.statusLine.statusCode
+//
+//
+//            BufferedReader(InputStreamReader(response.entity.content)).use { reader ->
+//                val responseString = reader.readLine()
+//                val objectMapper = ObjectMapper()
+//                val jsonNode: JsonNode = objectMapper.readTree(responseString)
+////                return jsonNode["data"].map { it["id"].asText() }.toTypedArray()
+//
+//                return arrayOf("1337022124")
+//            }
+//        }
+//    } catch (e: Exception) {
+//        e.printStackTrace()
+//        throw e
+//    }
+//}
+// TODO: 빠른 테스트를 위해서 생략
 fun fetchClientIds(envConfig: EnvConfig): Array<String> {
-    val httpClient: CloseableHttpClient = HttpClients.createDefault()
-    val request = HttpGet("${envConfig.apiHost}/topics?keyword=partitioned.ben")
-    request.addHeader("Authorization", "Bearer ${envConfig.accessToken}")
-    request.addHeader("x-city-id", "1")
-    request.addHeader("x-region-id", "1")
-    try {
-        httpClient.execute(request).use { response ->
-            val statusCode = response.statusLine.statusCode
-
-
-            BufferedReader(InputStreamReader(response.entity.content)).use { reader ->
-                val responseString = reader.readLine()
-                val objectMapper = ObjectMapper()
-                val jsonNode: JsonNode = objectMapper.readTree(responseString)
-//                return jsonNode["data"].map { it["id"].asText() }.toTypedArray()
-
-                return arrayOf("1337022124")
-            }
-        }
-    } catch (e: Exception) {
-        e.printStackTrace()
-        throw e
-    }
+    return Array(20) { i -> (i + 1).toString() }
 }
 
 fun initProperties(config: KafkaStreamsConfig): Properties {
