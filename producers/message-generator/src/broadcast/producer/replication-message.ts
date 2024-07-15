@@ -1,6 +1,6 @@
 import { Kafka } from 'kafkajs';
 
-const brokers = [`localhost:9092`]
+const brokers = [`kafka-kafka-bootstrap.streaming.svc.cluster.local:9092`]
 
 const kafka = new Kafka({
   clientId: 'kafkajs-producer',

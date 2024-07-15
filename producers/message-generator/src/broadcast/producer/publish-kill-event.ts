@@ -1,6 +1,5 @@
 import { Kafka } from 'kafkajs';
 
-// const brokers = [`localhost:9092`]
 const brokers = [`kafka-kafka-bootstrap.streaming.svc.cluster.local:9092`]
 
 const kafka = new Kafka({
@@ -90,7 +89,7 @@ const run = async () => {
                 before: null,
                 after: {
                     id: 1214961,
-                    type: 'NotificationQueuedEvent',
+                    type: 'KillEvent',
                     occurredAt: 1718785628000,
                     txId: '466daa33-0a60-48ed-8c99-b473bc43f72e',
                     createdAt: 1718785629049095,

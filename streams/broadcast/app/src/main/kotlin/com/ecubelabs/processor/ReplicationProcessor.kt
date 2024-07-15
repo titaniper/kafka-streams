@@ -13,6 +13,10 @@ class ReplicationProcessor : AbstractProcessor<String?, String?>() {
             val jsonNode: JsonNode = objectMapper.readTree(value)
             val afterNode: ObjectNode = jsonNode.get("payload").get("after") as ObjectNode
             val type = afterNode.get("type").asText()
+            if (type.equals("KillEvent")) {
+                throw Exception("KillEvent is occurred.")
+            }
+
             val newType = when (type) {
                 "AccountUpdatedEvent" -> "ReplicateAccountCommand"
                 "IndividualServiceUpdatedEvent" -> "ReplicateServiceCommand"

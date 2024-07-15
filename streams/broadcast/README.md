@@ -11,9 +11,9 @@ docker exec broadcast-app sh -c 'env | grep NODE_ENV'
 
 # Deploy
 ```
-docker build -t kafka-streams-broadcast --build-arg NODE_ENV=test --build-arg COMMIT_HASH=ereer .
+docker build -t devjyk/kafka-streams-broadcast:latest --build-arg NODE_ENV=test --build-arg COMMIT_HASH=ereer .
+docker push devjyk/kafka-streams-broadcast:latest
 docker login  -u devjyk
-docker push devjyk/kafka-streams-broadcast
 ```
 
 
